@@ -14,7 +14,7 @@ class ProduitController extends Controller
     {
         $produits = Produit::all();
         //dd($produits);
-        return view('admin.index', compact ('produits'));
+        return view('produits.index', compact ('produits'));
     }
 
     /**
@@ -73,4 +73,15 @@ class ProduitController extends Controller
     {
         //
     }
+
+    public function search(Request $request)
+{
+    $motCle = $request->input('q');
+
+    $produits = Produit::where('nom', 'LIKE', "%$motCle%")
+                ->orWhere('description', 'LIKE', "%$motCle%")
+                ->get();
+
+    return view('produits.search', compact('produits', 'motCle'));
+}
 }

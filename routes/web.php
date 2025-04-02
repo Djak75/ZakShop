@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProduitController;
 use App\Http\Controllers\CategorieController;
 
@@ -21,6 +22,12 @@ Route::get('/categories/{id}', [CategorieController::class, 'show'])->name('cate
 Route::get('/categories/{id}/edit', [CategorieController::class, 'edit'])->name('categories.edit');
 Route::put('/categories/{id}', [CategorieController::class, 'update'])->name('categories.update');
 Route::delete('/categories/{id}', [CategorieController::class, 'destroy'])->name('categories.destroy');
+
+// Routes front contact
+Route::get('/contact', [ContactController::class, 'show'])->name('contact');
+
+// Routes front recherche
+Route::get('/recherche', [ProduitController::class, 'search'])->name('produits.search');
 
 
 //Routes admin

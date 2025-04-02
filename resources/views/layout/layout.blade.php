@@ -10,22 +10,33 @@
     <div class="container">
 
         <!-- Menu des catégories -->
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container">
-                <a class="navbar-brand" href="{{ route('produits.index') }}">Zak Shop</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        @foreach ($categories as $categorie)
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('categories.show', $categorie->id) }}">{{ $categorie->nom }}</a>
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark shadow-sm">
+        <div class="container">
+            <a class="navbar-brand text-white fw-bold" href="{{ route('produits.index') }}">ZakShop</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
+            <!-- Menu -->
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link text-white" href="{{ route('produits.index') }}">Accueil</a></li>
+                @foreach ($categories as $categorie)
+                <li class="nav-item">
+                    <a class="nav-link text-white" href="{{ route('categories.show', $categorie->id) }}">{{ $categorie->nom }}</a>
+                </li>
+                @endforeach
+                <li class="nav-item"><a class="nav-link text-white" href="{{ route('contact') }}">Contact</a></li>
+            </ul>
+
+            <!-- Recherche -->
+            <form class="d-flex" action="{{ route('produits.search') }}" method="GET">
+                <input class="form-control me-2" type="search" name="q" placeholder="Rechercher un produit" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Rechercher</button>
+            </form>
             </div>
+        </div>
         </nav>
 
 
